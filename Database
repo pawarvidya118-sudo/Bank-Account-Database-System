@@ -1,0 +1,52 @@
+#include <stdio.h>
+#include <string.h>   
+
+struct customer{
+    int acc_no;
+    char customer_name[50];
+    char acc_type[10];   
+    float balance;
+};
+
+int main(){
+    int i, j;
+    struct customer cust[10], temp;
+
+    
+    for(i=0; i<5; i++){
+        printf("===BANK ACCOUNT DATABASE SYSTEM===\n");
+        printf("Enter account Number: ");
+        scanf("%d", &cust[i].acc_no);
+        
+        printf("Enter Customer name: ");
+        scanf("%s", cust[i].customer_name);   
+        printf("Account type (Current/Savings): ");
+        scanf("%s", cust[i].acc_type);  
+        printf("Enter account balance: ");
+        scanf("%f", &cust[i].balance);
+    }
+
+    
+    for(i=0; i<5; i++){
+        for(j=i+1; j<5; j++){
+            if(cust[i].balance < cust[j].balance){
+                 
+                temp = cust[i];
+                cust[i] = cust[j];
+                cust[j] = temp;
+            }
+        }
+    }
+
+
+    printf("\n===SORTED BANK ACCOUNT DATABASE===\n");
+    for(i=0; i<5; i++){
+        printf("\nAccount Number: %d", cust[i].acc_no);
+        printf("\nCustomer Name: %s", cust[i].customer_name);
+        printf("\nAccount Type: %s", cust[i].acc_type);
+        printf("\nAccount Balance: %f\n", cust[i].balance);
+    }
+
+    return 0;
+}
+
